@@ -941,3 +941,26 @@ const initFanCarousel = () => {
     observer.observe(el);
   });
 })();
+
+/* ================================================
+   MOBILE MENU TOGGLE
+   ================================================ */
+(function() {
+  const hamburger = document.querySelector('.hamburger');
+  const navLinks = document.querySelector('.nav-links');
+  
+  if (hamburger && navLinks) {
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('open');
+      navLinks.classList.toggle('active');
+    });
+
+    // Close menu when a link is clicked
+    document.querySelectorAll('.nav-link').forEach(link => {
+      link.addEventListener('click', () => {
+        hamburger.classList.remove('open');
+        navLinks.classList.remove('active');
+      });
+    });
+  }
+})();
