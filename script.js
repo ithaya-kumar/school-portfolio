@@ -221,8 +221,10 @@ const initAchievementsFilter = () => {
         const match = (filter === 'all' || card.getAttribute('data-category') === filter);
         if (match) {
           card.classList.remove('hidden');
-          card.style.display = 'block'; // Ensure visibility
-          card.animate([{ opacity: 0, transform: 'translateY(10px)' }, { opacity: 1, transform: 'translateY(0)' }], { duration: 400, fill: 'forwards' });
+          card.style.display = ''; // Reset to default CSS display
+          card.style.animation = 'none';
+          card.offsetHeight; /* trigger reflow */
+          card.style.animation = 'fadeInUp 0.4s ease forwards';
         } else {
           card.classList.add('hidden');
           card.style.display = 'none';
