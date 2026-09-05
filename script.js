@@ -1,4 +1,4 @@
-﻿/**
+/**
  * EduNova International School – script.js
  * All interactive features for the school portfolio website.
  */
@@ -674,7 +674,7 @@ document.addEventListener('DOMContentLoaded', () => {
   if (heroBg) {
     window.addEventListener('scroll', () => {
       const scrollY = window.scrollY;
-      heroBg.style.transform = 	ranslateY( + scrollY * 0.4 + px);
+      heroBg.style.transform = `translateY(${scrollY * 0.4}px)`;
     });
   }
 });
@@ -965,33 +965,4 @@ const initFanCarousel = () => {
   }
 })();
 
-/* ================================================
-   ACHIEVEMENTS FILTER LOGIC
-   ================================================ */
-(function() {
-  const filterBtns = document.querySelectorAll('.filter-btn');
-  const achCards = document.querySelectorAll('.ach-card');
 
-  if (filterBtns.length > 0 && achCards.length > 0) {
-    filterBtns.forEach(btn => {
-      btn.addEventListener('click', () => {
-        // Remove active class from all buttons
-        filterBtns.forEach(b => b.classList.remove('active'));
-        // Add active class to clicked button
-        btn.classList.add('active');
-        
-        const filterValue = btn.getAttribute('data-filter');
-        
-        achCards.forEach(card => {
-          if (filterValue === 'all' || card.getAttribute('data-category') === filterValue) {
-            card.style.display = 'block';
-            // Add a smooth fade effect when filtering
-            card.animate([{ opacity: 0, transform: 'translateY(10px)' }, { opacity: 1, transform: 'translateY(0)' }], { duration: 400, fill: 'forwards' });
-          } else {
-            card.style.display = 'none';
-          }
-        });
-      });
-    });
-  }
-})();
