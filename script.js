@@ -209,19 +209,22 @@ const initAchievementsFilter = () => {
   if (!btns.length || !cards.length) return;
 
   btns.forEach((btn) => {
-    btn.addEventListener('click', () => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
       // Update active state
       btns.forEach((b) => b.classList.remove('active'));
       btn.classList.add('active');
 
-      const filter = btn.dataset.filter;
+      const filter = btn.getAttribute('data-filter');
 
       cards.forEach((card) => {
-        const match = filter === 'all' || card.dataset.category === filter;
+        const match = (filter === 'all' || card.getAttribute('data-category') === filter);
         if (match) {
-          card.style.display = '';
-          card.style.animation = 'fadeInUp 0.4s ease forwards';
+          card.classList.remove('hidden');
+          card.style.display = 'block'; // Ensure visibility
+          card.animate([{ opacity: 0, transform: 'translateY(10px)' }, { opacity: 1, transform: 'translateY(0)' }], { duration: 400, fill: 'forwards' });
         } else {
+          card.classList.add('hidden');
           card.style.display = 'none';
         }
       });
